@@ -1,0 +1,15 @@
+import type { DocumentNode, GraphQLSchema, InterfaceTypeDefinitionNode, ListTypeNode, NamedTypeNode, NonNullTypeNode, ObjectTypeDefinitionNode, TypeNode } from 'graphql';
+import { Graph } from 'graphlib';
+export declare const isListType: (typ?: TypeNode) => typ is ListTypeNode;
+export declare const isNonNullType: (typ?: TypeNode) => typ is NonNullTypeNode;
+export declare const isNamedType: (typ?: TypeNode) => typ is NamedTypeNode;
+export declare const isInput: (kind: string) => boolean;
+type ObjectTypeDefinitionFn = (node: ObjectTypeDefinitionNode) => any;
+type InterfaceTypeDefinitionFn = (node: InterfaceTypeDefinitionNode) => any;
+export declare function ObjectTypeDefinitionBuilder(useObjectTypes: boolean | undefined, callback: ObjectTypeDefinitionFn): ObjectTypeDefinitionFn | undefined;
+export declare function InterfaceTypeDefinitionBuilder(useInterfaceTypes: boolean | undefined, callback: InterfaceTypeDefinitionFn): InterfaceTypeDefinitionFn | undefined;
+export declare function topologicalSortAST(schema: GraphQLSchema, ast: DocumentNode): DocumentNode;
+export declare function topsort(g: Graph): string[];
+export declare function isGeneratedByIntrospection(schema: GraphQLSchema): boolean;
+export declare function escapeGraphQLCharacters(input: string): string;
+export {};
